@@ -16,17 +16,19 @@ class DropColumns(BaseEstimator, TransformerMixin):
         return data.drop(labels=self.columns, axis='columns')
 
 class StandardTransform(BaseEstimator,TransformerMixin):
-    def __init__(self,columns):
-        self.columns = columns 
+    def __init__(self):
+       # self.columns = columns 
         
         self.scaler = StandardScaler()
         
     
     def fit(self,X, y= None):
+        #print(type(X))
+        self.scaler.fit(X)
         return self
     def transform(self,X):
         
-        data = self.scaler.fit_transform(X[self.columns])
+        data = self.scaler.transform(X)
         return data 
         
 
